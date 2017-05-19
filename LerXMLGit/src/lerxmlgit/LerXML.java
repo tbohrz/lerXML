@@ -25,37 +25,44 @@ import org.jdom2.Attribute;
  */
 public class LerXML {
 
-    
     public static void main(String[] args) throws JDOMException, IOException {
 
         File f = new File("C:\\Users\\labin\\Desktop\\exercicio 180517\\clientes.xml");
-	//Criamos um objeto SAXBuilder
+        //Criamos um objeto SAXBuilder
         // para ler o arquivo
         SAXBuilder sb = new SAXBuilder();
-	//Criamos um objeto Document que
+        //Criamos um objeto Document que
         // recebe o conteúdo do arquivo
         Document doc = sb.build(f);
-	//Criamos um objeto Element que
+        //Criamos um objeto Element que
         // recebe as tags do XML
         Element rootNode = doc.getRootElement();
-        Element cidade = rootNode.getChild("cidade");
-         
+        //Element cidade = rootNode.getChild("cidade");
+        List list_cidade = rootNode.getChildren("cidade");
+
         cidade cid = new cidade();
-        
-        Attribute codigo = cidade.getAttribute("codigo");
-        Attribute nome = cidade.getAttribute("nome");
-        Attribute uf = cidade.getAttribute("uf");
-        
-        cid.setCodigo(Integer.parseInt(codigo.getValue()));
-        cid.setNome(nome.getValue());
-        cid.setUf(uf.getValue());
-        
-        System.out.println(cid.getCodigo());
-        System.out.println(cid.getNome());
-        System.out.println(cid.getUf());
-        
+        ArrayList<cidade> acidade = new ArrayList();
 
-         
+        for (int i = 0; i < list_cidade.size(); i++) {
+
+            Element node = (Element) list_cidade.get(i);
+
+            Attribute codigo = node.getAttribute("codigo");
+            Attribute nome = node.getAttribute("nome");
+            Attribute uf = node.getAttribute("uf");
+
+            cid.setCodigo(Integer.parseInt(codigo.getValue()));
+            cid.setNome(nome.getValue());
+            cid.setUf(uf.getValue());
+
+            acidade.add(cid);
+        }
+
+        for (cidade cidd : acidade) {
+            System.out.println(cidd.getCodigo());
+            System.out.println(cidd.getNome());
+            System.out.println(cidd.getUf());
+        }
+
     }
-
 }
