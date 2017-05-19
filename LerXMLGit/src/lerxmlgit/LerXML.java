@@ -39,21 +39,22 @@ public class LerXML {
         // recebe as tags do XML
         Element rootNode = doc.getRootElement();
         Element cidade = rootNode.getChild("cidade");
-        Iterator i_atr = filhos.iterator();
+         
+        cidade cid = new cidade();
+        
+        Attribute codigo = cidade.getAttribute("codigo");
+        Attribute nome = cidade.getAttribute("nome");
+        Attribute uf = cidade.getAttribute("uf");
+        
+        cid.setCodigo(Integer.parseInt(codigo.getValue()));
+        cid.setNome(nome.getValue());
+        cid.setUf(uf.getValue());
+        
+        System.out.println(cid.getCodigo());
+        System.out.println(cid.getNome());
+        System.out.println(cid.getUf());
+        
 
-         cidade cid = new cidade();
-         
-         
-         //Iteramos com os atributos filhos  
-            while (i_atr.hasNext()) {  
-                Attribute atrib = (Attribute) i_atr.next();  
-                
-            }  
-        //Recuperamos os elementos filhos (children)  
-            List elements = rootNode.getChildren();  
-            Iterator i = elements.iterator();  
-            
-            
          
     }
 
